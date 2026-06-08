@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS18'
-    }
-
     stages {
         stage('Install') {
             steps {
@@ -17,12 +13,6 @@ pipeline {
             steps {
                 bat 'npx playwright test'
             }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
         }
     }
 }
