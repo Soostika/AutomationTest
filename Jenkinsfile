@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages {
-
         stage('Install') {
             steps {
                 bat 'npm install'
@@ -18,6 +17,12 @@ pipeline {
             steps {
                 bat 'npx playwright test'
             }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
         }
     }
 }
